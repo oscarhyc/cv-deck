@@ -641,11 +641,7 @@ li {
 /* PRINT                                                                       */
 /* ─────────────────────────────────────────────────────────────────────────── */
 
-@media print {
-  body { background: white; color: black; }
-  .slide { border-bottom: 1px solid #ccc; page-break-inside: avoid; }
-  .deck-controls, .deck-progress { display: none; }
-}
+/* PRINT (light-theme override block removed — screen theme now applies to print) */
 
 /* ─────────────────────────────────────────────────────────────────────────── */
 /* PHASE-1 POLISH: NEW COMPONENTS (slides 1, 2, 3, 5, 7 + slide-10 tags)      */
@@ -1652,88 +1648,7 @@ li {
   50%, 100% { opacity: 0; }
 }
 
-/* ═══ Print stylesheet (PDF export) ═══ */
-
-@media print {
-  body {
-    background: white;
-    color: #000;
-  }
-  .slide {
-    background: white !important;
-    color: #000 !important;
-    border-bottom: 1px solid #ccc;
-    page-break-inside: avoid;
-    min-height: auto;
-    height: auto;
-    padding: 1.5rem 1rem;
-    opacity: 1 !important;
-    transform: none !important;
-  }
-  .deck-controls,
-  .deck-progress,
-  .deck-toc,
-  .deck-crt,
-  .deck-loading,
-  a[href*="staging.taxi"],
-  a[href*="taxi-rental.pages"]::after {
-    display: none !important;
-  }
-  /* Convert live URLs to footers */
-  .live-link {
-    border: 1px solid #000 !important;
-    background: white !important;
-    color: #000 !important;
-    page-break-inside: avoid;
-  }
-  .live-link .url {
-    color: #000 !important;
-  }
-  .live-link .status {
-    background: #000 !important;
-    color: white !important;
-  }
-  .ascii-diagram, .cicd-cycle {
-    background: #f8f8f8 !important;
-    color: #000 !important;
-    border-left: 3px solid #000 !important;
-    page-break-inside: avoid;
-    font-size: 0.7rem !important;
-  }
-  .card, .highlight {
-    background: white !important;
-    border: 1px solid #999 !important;
-    color: #000 !important;
-    page-break-inside: avoid;
-  }
-  code {
-    background: #f4f4f4 !important;
-    color: #000 !important;
-  }
-  a {
-    color: #000 !important;
-    text-decoration: underline;
-  }
-  .cover {
-    background: white !important;
-    color: #000 !important;
-  }
-  .status-badge {
-    border-color: #000 !important;
-    background: white !important;
-    color: #000 !important;
-  }
-  .str-pill, .badge {
-    border-color: #000 !important;
-    background: white !important;
-    color: #000 !important;
-  }
-  .deck-h1, .deck-h2 {
-    color: #000 !important;
-    background: none !important;
-    -webkit-text-fill-color: #000 !important;
-  }
-}
+/* ═══ Print stylesheet (light-theme block removed — screen theme now applies to print) ═══ */
 
 /* ═══ Hide deck controls when printing ═══ */
 @media print {
@@ -2604,36 +2519,9 @@ li {
 /* PRINT / PDF — make the deck printable to A4 with one slide per page         */
 /* ─────────────────────────────────────────────────────────────────────────── */
 
-@page {
-  size: A4;
-  margin: 12mm 14mm;
-}
+/* (Page size and margins left to the browser default — landscape dialog option removed) */
 
 @media print {
-  /* Force light theme so dark text + colored accents render on paper */
-  :root {
-    --bg:          #ffffff;
-    --bg-alt:      #fafafa;
-    --bg-elevated: #f4f4f5;
-    --border:      #d1d5db;
-    --text:        #111827;
-    --text-dim:    #4b5563;
-    --text-bright: #000000;
-    --accent:      #ea580c;
-    --accent-soft: #fb923c;
-    --accent-2:    #2563eb;
-    --accent-3:    #16a34a;
-    --accent-4:    #9333ea;
-    --accent-5:    #dc2626;
-  }
-
-  html, body {
-    background: #ffffff !important;
-    color: #111827 !important;
-    scroll-behavior: auto !important;
-    scroll-snap-type: none !important;
-  }
-
   /* One slide per page */
   .slide {
     min-height: 0 !important;
@@ -2645,7 +2533,6 @@ li {
     break-after: page;
     break-inside: avoid;
     display: block !important;
-    background: #ffffff !important;
   }
   .slide:last-of-type {
     page-break-after: auto;
@@ -2659,15 +2546,6 @@ li {
   }
 
   /* Cover: lighter background, no gradient needed */
-  .cover {
-    background: #ffffff !important;
-    text-align: left !important;
-  }
-  .cover .cover-inner,
-  .cover > .slide-inner {
-    text-align: left !important;
-  }
-
   /* Hide all on-screen chrome that has no place on paper */
   .deck-crt,
   .deck-controls,
@@ -2737,7 +2615,6 @@ li {
   /* Card / highlight / receipt grids: keep but soften shadows */
   .card, .highlight, .receipt-card, .phase,
   .strength-card, .patterns-table, table {
-    background: #ffffff !important;
     border: 1px solid #d1d5db !important;
     box-shadow: none !important;
     page-break-inside: avoid;
