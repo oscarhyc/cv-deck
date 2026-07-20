@@ -1739,11 +1739,18 @@ li {
 @media print {
   .deck-controls { display: none !important; }
 
-  /* OVER-FULL SLIDES — scale + font shrink to fit single page (slide 2, 5, 6) */
-  #slide-2,
+  /* OVER-FULL SLIDES — scale + font shrink to fit single page */
+  /* slide 5, 6: scale 0.92 (mild). slide 2: scale 0.85 (more aggressive) */
   #slide-5,
   #slide-6 {
     transform: scale(0.92);
+    transform-origin: top center;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    overflow: hidden;
+  }
+  #slide-2 {
+    transform: scale(0.85);
     transform-origin: top center;
     page-break-inside: avoid;
     break-inside: avoid;
