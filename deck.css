@@ -2599,3 +2599,225 @@ li {
   background: #ff9a45; border-color: #ff9a45; color: #0d1117;
   transform: translateY(-1px);
 }
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+/* PRINT / PDF — make the deck printable to A4 with one slide per page         */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+@page {
+  size: A4;
+  margin: 12mm 14mm;
+}
+
+@media print {
+  /* Force light theme so dark text + colored accents render on paper */
+  :root {
+    --bg:          #ffffff;
+    --bg-alt:      #fafafa;
+    --bg-elevated: #f4f4f5;
+    --border:      #d1d5db;
+    --text:        #111827;
+    --text-dim:    #4b5563;
+    --text-bright: #000000;
+    --accent:      #ea580c;
+    --accent-soft: #fb923c;
+    --accent-2:    #2563eb;
+    --accent-3:    #16a34a;
+    --accent-4:    #9333ea;
+    --accent-5:    #dc2626;
+  }
+
+  html, body {
+    background: #ffffff !important;
+    color: #111827 !important;
+    scroll-behavior: auto !important;
+    scroll-snap-type: none !important;
+  }
+
+  /* One slide per page */
+  .slide {
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 4mm 0 !important;
+    border-bottom: none !important;
+    page-break-after: always;
+    page-break-inside: avoid;
+    break-after: page;
+    break-inside: avoid;
+    display: block !important;
+    background: #ffffff !important;
+  }
+  .slide:last-of-type {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  /* Strip scroll-snap from slides */
+  .slide {
+    scroll-snap-align: none !important;
+    scroll-snap-stop: normal !important;
+  }
+
+  /* Cover: lighter background, no gradient needed */
+  .cover {
+    background: #ffffff !important;
+    text-align: left !important;
+  }
+  .cover .cover-inner,
+  .cover > .slide-inner {
+    text-align: left !important;
+  }
+
+  /* Hide all on-screen chrome that has no place on paper */
+  .deck-crt,
+  .deck-controls,
+  .deck-progress,
+  .deck-toc,
+  .deck-loading,
+  #creds-modal {
+    display: none !important;
+  }
+
+  /* Kill every animation / transition so the print captures the static end-state */
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    animation-duration: 0s !important;
+    transition-duration: 0s !important;
+  }
+
+  /* SVG diagrams: scale to fit page width without overflowing */
+  svg.smart-diagram,
+  svg.phase-flow,
+  svg.architecture-svg {
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: 140mm !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* Force backgrounds (browsers strip them by default in print) */
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Preserve text colors so dark mode doesn't get inverted */
+  .deck-kicker, .deck-h2, .deck-body, .deck-lede,
+  h1, h2, h3, h4, p, li, td, th, span, code, pre {
+    color: var(--text, #111827) !important;
+    -webkit-text-fill-color: var(--text, #111827) !important;
+  }
+
+  /* Show URL after external links so a printed page is still verifiable */
+  a[href^="http"]:not([href*="cv-deck.pages.dev"]):after,
+  a[href^="mailto:"]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.78em;
+    color: #4b5563;
+    word-break: break-all;
+  }
+  a {
+    color: var(--accent-2, #2563eb) !important;
+    text-decoration: underline;
+  }
+
+  /* Code blocks: light background, dark text, wrap if too wide */
+  code, pre {
+    background: #f4f4f5 !important;
+    color: #111827 !important;
+    border: 1px solid #e5e7eb !important;
+    padding: 0.1em 0.3em !important;
+    border-radius: 4px !important;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  /* Card / highlight / receipt grids: keep but soften shadows */
+  .card, .highlight, .receipt-card, .phase,
+  .strength-card, .patterns-table, table {
+    background: #ffffff !important;
+    border: 1px solid #d1d5db !important;
+    box-shadow: none !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* Receipts grid: 4 columns on screen, 2 columns on paper for legibility */
+  .receipts-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 6px !important;
+  }
+
+  /* Tables: don't blow up the page width */
+  table { width: 100% !important; table-layout: fixed !important; }
+  table th, table td {
+    font-size: 0.78rem !important;
+    padding: 4px 6px !important;
+    word-wrap: break-word;
+  }
+
+  /* Slide number footer: keep visible but make it tiny and dim */
+  .slide-number {
+    color: #6b7280 !important;
+    font-size: 0.65rem !important;
+    position: relative !important;
+    bottom: auto !important;
+    right: auto !important;
+    display: block !important;
+    text-align: right !important;
+    margin-top: 4mm !important;
+  }
+
+  /* Kicker / h2 sizes for paper */
+  .deck-kicker { font-size: 0.78rem !important; letter-spacing: 0.15em !important; }
+  .deck-h2     { font-size: 1.35rem !important; margin: 0.3em 0 0.5em !important; }
+  .deck-body   { font-size: 0.82rem !important; line-height: 1.5 !important; }
+
+  /* Phase diagram: 2 rows × 4 cells on screen — on paper, allow page split if needed */
+  .phase-flow {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* Avoid orphan headings */
+  h1, h2, h3 { page-break-after: avoid; break-after: avoid; }
+  figure, img, svg { page-break-inside: avoid; break-inside: avoid; }
+
+  /* ─────────────────────────────────────────────────────────────────────────── */
+  /* OVER-FULL SLIDES — scale to fit single A4 landscape page (slide 2, 5, 6)   */
+  /* ─────────────────────────────────────────────────────────────────────────── */
+  #slide-2,
+  #slide-5,
+  #slide-6 {
+    transform: scale(0.85);
+    transform-origin: top center;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    overflow: hidden;
+  }
+  #slide-2 .deck-h2,
+  #slide-5 .deck-h2,
+  #slide-6 .deck-h2 {
+    font-size: 1.15rem !important;
+    margin: 0.2em 0 0.4em !important;
+  }
+  #slide-2 .deck-body,
+  #slide-5 .deck-body,
+  #slide-6 .deck-body {
+    font-size: 0.75rem !important;
+    line-height: 1.4 !important;
+  }
+  #slide-2 .grid-2,
+  #slide-2 .grid-3,
+  #slide-2 .grid-4,
+  #slide-5 .grid-2,
+  #slide-5 .grid-3,
+  #slide-5 .grid-4,
+  #slide-6 .grid-2,
+  #slide-6 .grid-3,
+  #slide-6 .grid-4 {
+    gap: 0.6em !important;
+  }
+}
