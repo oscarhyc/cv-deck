@@ -2663,12 +2663,13 @@ li {
   figure, img, svg { page-break-inside: avoid; break-inside: avoid; }
 
   /* ─────────────────────────────────────────────────────────────────────────── */
-  /* OVER-FULL SLIDES — scale to fit single A4 landscape page (slide 2, 5, 6)   */
+  /* OVER-FULL SLIDES — scale to fit single page (slide 2, 5, 6)                 */
+  /* Combination: transform: scale(0.92) + font 95% (0.95 × 0.9rem base)          */
   /* ─────────────────────────────────────────────────────────────────────────── */
   #slide-2,
   #slide-5,
   #slide-6 {
-    transform: scale(0.85);
+    transform: scale(0.92);
     transform-origin: top center;
     page-break-inside: avoid;
     break-inside: avoid;
@@ -2677,13 +2678,13 @@ li {
   #slide-2 .deck-h2,
   #slide-5 .deck-h2,
   #slide-6 .deck-h2 {
-    font-size: 1.15rem !important;
+    font-size: 1.25rem !important;
     margin: 0.2em 0 0.4em !important;
   }
   #slide-2 .deck-body,
   #slide-5 .deck-body,
   #slide-6 .deck-body {
-    font-size: 0.75rem !important;
+    font-size: 0.85rem !important;
     line-height: 1.4 !important;
   }
   #slide-2 .grid-2,
