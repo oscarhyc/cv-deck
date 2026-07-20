@@ -641,7 +641,11 @@ li {
 /* PRINT                                                                       */
 /* ─────────────────────────────────────────────────────────────────────────── */
 
-/* PRINT (light-theme override block removed — screen theme now applies to print) */
+@media print {
+  body { background: white; color: black; }
+  .slide { border-bottom: 1px solid #ccc; page-break-inside: avoid; }
+  .deck-controls, .deck-progress { display: none; }
+}
 
 /* ─────────────────────────────────────────────────────────────────────────── */
 /* PHASE-1 POLISH: NEW COMPONENTS (slides 1, 2, 3, 5, 7 + slide-10 tags)      */
@@ -1648,11 +1652,115 @@ li {
   50%, 100% { opacity: 0; }
 }
 
-/* ═══ Print stylesheet (light-theme block removed — screen theme now applies to print) ═══ */
+/* ═══ Print stylesheet (PDF export) ═══ */
+
+@media print {
+  body {
+    background: white;
+    color: #000;
+  }
+  .slide {
+    background: white !important;
+    color: #000 !important;
+    border-bottom: 1px solid #ccc;
+    page-break-inside: avoid;
+    min-height: auto;
+    height: auto;
+    padding: 1.5rem 1rem;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .deck-controls,
+  .deck-progress,
+  .deck-toc,
+  .deck-crt,
+  .deck-loading,
+  a[href*="staging.taxi"],
+  a[href*="taxi-rental.pages"]::after {
+    display: none !important;
+  }
+  /* Convert live URLs to footers */
+  .live-link {
+    border: 1px solid #000 !important;
+    background: white !important;
+    color: #000 !important;
+    page-break-inside: avoid;
+  }
+  .live-link .url {
+    color: #000 !important;
+  }
+  .live-link .status {
+    background: #000 !important;
+    color: white !important;
+  }
+  .ascii-diagram, .cicd-cycle {
+    background: #f8f8f8 !important;
+    color: #000 !important;
+    border-left: 3px solid #000 !important;
+    page-break-inside: avoid;
+    font-size: 0.7rem !important;
+  }
+  .card, .highlight {
+    background: white !important;
+    border: 1px solid #999 !important;
+    color: #000 !important;
+    page-break-inside: avoid;
+  }
+  code {
+    background: #f4f4f4 !important;
+    color: #000 !important;
+  }
+  a {
+    color: #000 !important;
+    text-decoration: underline;
+  }
+  .cover {
+    background: white !important;
+    color: #000 !important;
+  }
+  .status-badge {
+    border-color: #000 !important;
+    background: white !important;
+    color: #000 !important;
+  }
+  .str-pill, .badge {
+    border-color: #000 !important;
+    background: white !important;
+    color: #000 !important;
+  }
+  .deck-h1, .deck-h2 {
+    color: #000 !important;
+    background: none !important;
+    -webkit-text-fill-color: #000 !important;
+  }
+}
 
 /* ═══ Hide deck controls when printing ═══ */
 @media print {
   .deck-controls { display: none !important; }
+
+  /* OVER-FULL SLIDES — scale + font shrink to fit single page (slide 2, 5, 6) */
+  #slide-2,
+  #slide-5,
+  #slide-6 {
+    transform: scale(0.92);
+    transform-origin: top center;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    overflow: hidden;
+  }
+  #slide-2 .deck-h2,
+  #slide-5 .deck-h2,
+  #slide-6 .deck-h2 {
+    font-size: 1.25rem !important;
+    margin: 0.2em 0 0.4em !important;
+  }
+  #slide-2 .deck-body,
+  #slide-5 .deck-body,
+  #slide-6 .deck-body {
+    font-size: 0.85rem !important;
+    line-height: 1.4 !important;
+  }
 }
 
 /* ═══ Smooth progress bar easing ═══ */
@@ -2513,189 +2621,4 @@ li {
 .creds-btn-primary:hover {
   background: #ff9a45; border-color: #ff9a45; color: #0d1117;
   transform: translateY(-1px);
-}
-
-/* ─────────────────────────────────────────────────────────────────────────── */
-/* PRINT / PDF — make the deck printable to A4 with one slide per page         */
-/* ─────────────────────────────────────────────────────────────────────────── */
-
-/* (Page size and margins left to the browser default — landscape dialog option removed) */
-
-@media print {
-  /* One slide per page */
-  .slide {
-    min-height: 0 !important;
-    height: auto !important;
-    padding: 4mm 0 !important;
-    border-bottom: none !important;
-    page-break-after: always;
-    page-break-inside: avoid;
-    break-after: page;
-    break-inside: avoid;
-    display: block !important;
-  }
-  .slide:last-of-type {
-    page-break-after: auto;
-    break-after: auto;
-  }
-
-  /* Strip scroll-snap from slides */
-  .slide {
-    scroll-snap-align: none !important;
-    scroll-snap-stop: normal !important;
-  }
-
-  /* Cover: lighter background, no gradient needed */
-  /* Hide all on-screen chrome that has no place on paper */
-  .deck-crt,
-  .deck-controls,
-  .deck-progress,
-  .deck-toc,
-  .deck-loading,
-  #creds-modal {
-    display: none !important;
-  }
-
-  /* Kill every animation / transition so the print captures the static end-state */
-  *, *::before, *::after {
-    animation: none !important;
-    transition: none !important;
-    animation-duration: 0s !important;
-    transition-duration: 0s !important;
-  }
-
-  /* SVG diagrams: scale to fit page width without overflowing */
-  svg.smart-diagram,
-  svg.phase-flow,
-  svg.architecture-svg {
-    max-width: 100% !important;
-    height: auto !important;
-    max-height: 140mm !important;
-    page-break-inside: avoid;
-    break-inside: avoid;
-  }
-
-  /* Force backgrounds (browsers strip them by default in print) */
-  *, *::before, *::after {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
-
-  /* Preserve text colors so dark mode doesn't get inverted */
-  .deck-kicker, .deck-h2, .deck-body, .deck-lede,
-  h1, h2, h3, h4, p, li, td, th, span, code, pre {
-    color: var(--text, #111827) !important;
-    -webkit-text-fill-color: var(--text, #111827) !important;
-  }
-
-  /* Show URL after external links so a printed page is still verifiable */
-  a[href^="http"]:not([href*="cv-deck.pages.dev"]):after,
-  a[href^="mailto:"]:after {
-    content: " (" attr(href) ")";
-    font-size: 0.78em;
-    color: #4b5563;
-    word-break: break-all;
-  }
-  a {
-    color: var(--accent-2, #2563eb) !important;
-    text-decoration: underline;
-  }
-
-  /* Code blocks: light background, dark text, wrap if too wide */
-  code, pre {
-    background: #f4f4f5 !important;
-    color: #111827 !important;
-    border: 1px solid #e5e7eb !important;
-    padding: 0.1em 0.3em !important;
-    border-radius: 4px !important;
-    word-break: break-word;
-    overflow-wrap: anywhere;
-  }
-
-  /* Card / highlight / receipt grids: keep but soften shadows */
-  .card, .highlight, .receipt-card, .phase,
-  .strength-card, .patterns-table, table {
-    border: 1px solid #d1d5db !important;
-    box-shadow: none !important;
-    page-break-inside: avoid;
-    break-inside: avoid;
-  }
-
-  /* Receipts grid: 4 columns on screen, 2 columns on paper for legibility */
-  .receipts-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 6px !important;
-  }
-
-  /* Tables: don't blow up the page width */
-  table { width: 100% !important; table-layout: fixed !important; }
-  table th, table td {
-    font-size: 0.78rem !important;
-    padding: 4px 6px !important;
-    word-wrap: break-word;
-  }
-
-  /* Slide number footer: keep visible but make it tiny and dim */
-  .slide-number {
-    color: #6b7280 !important;
-    font-size: 0.65rem !important;
-    position: relative !important;
-    bottom: auto !important;
-    right: auto !important;
-    display: block !important;
-    text-align: right !important;
-    margin-top: 4mm !important;
-  }
-
-  /* Kicker / h2 sizes for paper */
-  .deck-kicker { font-size: 0.78rem !important; letter-spacing: 0.15em !important; }
-  .deck-h2     { font-size: 1.35rem !important; margin: 0.3em 0 0.5em !important; }
-  .deck-body   { font-size: 0.82rem !important; line-height: 1.5 !important; }
-
-  /* Phase diagram: 2 rows × 4 cells on screen — on paper, allow page split if needed */
-  .phase-flow {
-    page-break-inside: avoid;
-    break-inside: avoid;
-  }
-
-  /* Avoid orphan headings */
-  h1, h2, h3 { page-break-after: avoid; break-after: avoid; }
-  figure, img, svg { page-break-inside: avoid; break-inside: avoid; }
-
-  /* ─────────────────────────────────────────────────────────────────────────── */
-  /* OVER-FULL SLIDES — scale to fit single page (slide 2, 5, 6)                 */
-  /* Combination: transform: scale(0.92) + font 95% (0.95 × 0.9rem base)          */
-  /* ─────────────────────────────────────────────────────────────────────────── */
-  #slide-2,
-  #slide-5,
-  #slide-6 {
-    transform: scale(0.92);
-    transform-origin: top center;
-    page-break-inside: avoid;
-    break-inside: avoid;
-    overflow: hidden;
-  }
-  #slide-2 .deck-h2,
-  #slide-5 .deck-h2,
-  #slide-6 .deck-h2 {
-    font-size: 1.25rem !important;
-    margin: 0.2em 0 0.4em !important;
-  }
-  #slide-2 .deck-body,
-  #slide-5 .deck-body,
-  #slide-6 .deck-body {
-    font-size: 0.85rem !important;
-    line-height: 1.4 !important;
-  }
-  #slide-2 .grid-2,
-  #slide-2 .grid-3,
-  #slide-2 .grid-4,
-  #slide-5 .grid-2,
-  #slide-5 .grid-3,
-  #slide-5 .grid-4,
-  #slide-6 .grid-2,
-  #slide-6 .grid-3,
-  #slide-6 .grid-4 {
-    gap: 0.6em !important;
-  }
 }
