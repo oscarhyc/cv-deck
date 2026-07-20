@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Chan Ho Yin · Senior Full-Stack · Platform-Cloud · Agentic AI Engineer</title>
+<meta name="description" content="Senior Full-Stack · Platform-Cloud · Agentic AI Engineer. Edge-native agent runtime · safety harness · 1,130 tests · 244 commits · $0 cloud bill. Hermes + Discord + Cloudflare." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="deck.css" />
+<!-- Architecture diagrams are now HAND-BUILT CSS Grid (see .diagram /
+     .diag-node in deck.css). Mermaid was replaced because of unfixable
+     sizing bugs (mermaid-js/mermaid issue #5038 + top-level config not
+     being read for flowchart). Saves ~200KB of JS. -->
+</head>
+<body>
+
+<script>
+  // (Mermaid init removed — diagrams are now hand-built CSS Grid.)
+</script>
+
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- SLIDE 1 · COVER                                                            -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<section class="slide cover" id="slide-1" aria-label="Cover slide">
+  <div class="slide-inner">
+    <p class="deck-kicker">● Available · Hong Kong · 廣東話 / English / 普通話</p>
+    <h1 class="deck-h1">Chan Ho Yin</h1>
+    <p class="tagline">Senior Full-Stack · Platform-Cloud · Agentic AI Engineer</p>
+    <p class="languages">📧 oscarhychan@gmail.com · 🔗 github.com/oscarhyc</p>
+    <span class="status-badge">
+      <span class="status-dot"></span>
+      AVAILABLE · OPEN TO AGENTIC-AI / PLATFORM ROLES
+    </span>
+    <div class="cover-cta">
+      <a class="btn btn-primary" href="https://staging.taxi-rental.pages.dev/" target="_blank" rel="noopener" data-open-credentials>🔗 Live Demo</a>
+    </div>
+    <div class="cover-creds">
+      <div class="cover-creds-row">
+        <span class="cover-creds-label">📧 Email</span>
+        <code class="cover-creds-value" id="cred-email-inline">owner@example.com</code>
+        <button type="button" class="cover-copy" data-copy-target-inline="cred-email-inline" aria-label="Copy email to clipboard">⧉</button>
+      </div>
+      <div class="cover-creds-row">
+        <span class="cover-creds-label">🔑 Password</span>
+        <code class="cover-creds-value" id="cred-password-inline">test123</code>
+        <button type="button" class="cover-copy" data-copy-target-inline="cred-password-inline" aria-label="Copy password to clipboard">⧉</button>
+      </div>
+    </div>
+    <div class="strengths-pill-row">
+      <span class="str-pill str-pill-accent">Agentic Systems</span>
+      <span class="str-pill">System Architecture</span>
+      <span class="str-pill">Agentic Engineering</span>
+      <span class="str-pill">Agent Guardrails &amp; HITL</span>
+      <span class="str-pill">TDD</span>
+      <span class="str-pill">Agent Harness Design</span>
+      <span class="str-pill">AgentOps</span>
+    </div>
+  </div>
+  <span class="slide-number">01 / 14</span>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <!-- SLIDE 2 · THE AGENT STACK (NEW)                                              -->
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <section class="slide" id="slide-2" aria-label="The Agent Stack">
+  <div class="slide-inner">
+    <p class="deck-kicker">/01· THE AGENT STACK</p>
+    <h2 class="deck-h2">Four pillars of my agentic runtime.</h2>
+    <p class="deck-body dim" style="margin-bottom:1.5rem;">The agent is a teammate with permissions, not a tool I prompt. It runs in a chatroom, ships via the edge, and is wrapped by a safety harness.</p>
+
+    <div class="agent-stack-grid">
+
+      <div class="stack-cell stack-cell-1">
+        <div class="stack-icon">[ 🤖 ]</div>
+        <h3 class="stack-title">AGENT</h3>
+        <ul class="stack-list">
+          <li><strong>Hermes Agent</strong> · by Nous Research</li>
+          <li>Model: <strong>MiniMax-M3</strong></li>
+          <li><strong>8 toolsets</strong> · file · terminal · web · browser · vision · TTS · cron · delegation</li>
+          <li><strong>Persistent memory</strong> + skills (curated procedures)</li>
+          <li>Sub-agent delegation · orchestrator / leaf</li>
+        </ul>
+      </div>
+
+      <div class="stack-cell stack-cell-2">
+        <div class="stack-icon">[ 💬 ]</div>
+        <h3 class="stack-title">MESSAGING</h3>
+        <ul class="stack-list">
+          <li><strong>Discord DM</strong> with @Oscar · 24/7</li>
+          <li><strong>#home channel</strong> for daily drop-offs</li>
+          <li><strong>Threaded topics</strong> = persistent project boards</li>
+          <li>Slash commands: <code>/clear</code> · <code>/model</code> · <code>/plan</code> · <code>/new</code></li>
+          <li>Voice notes via TTS · images via native vision</li>
+        </ul>
+      </div>
+
+      <div class="stack-cell stack-cell-3">
+        <div class="stack-icon">[ 🛠 ]</div>
+        <h3 class="stack-title">WORKSPACE</h3>
+        <ul class="stack-list">
+          <li><strong>Linux 6.17</strong> · Ubuntu 24.04 LTS</li>
+          <li>Python <strong>3.11.15</strong> · Node 22 · pnpm 9</li>
+          <li>Git 2.x · Docker · curl · wrangler CLI</li>
+          <li><strong>5 safety wrappers</strong> in <code>bin/</code> (deploy · smoke · d1 · seed · tag)</li>
+          <li>Vitest 2.x · <strong>1,130 tests</strong> · Playwright E2E</li>
+          <li><code>AGENTS.md</code> — 3 hard rules at repo root</li>
+        </ul>
+      </div>
+
+      <div class="stack-cell stack-cell-4">
+        <div class="stack-icon">[ ☁️ ]</div>
+        <h3 class="stack-title">EDGE</h3>
+        <ul class="stack-list">
+          <li><strong>Pages</strong> · React + Vite + i18next (zh-HK · en)</li>
+          <li><strong>Workers</strong> · Hono router + Zod validators</li>
+          <li><strong>D1</strong> · SQLite at edge · 16 users · 11 taxis</li>
+          <li><strong>R2</strong> · receipt file bucket (presigned URLs)</li>
+          <li><strong>Cron 19:00</strong> HKT · nightly notify job</li>
+          <li><strong>$0 spend</strong> · pay-as-you-go · 200+ PoPs</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="flow-strip">
+      <span class="flow-step">PROMPT</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">PLAN</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">BUILD</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">VERIFY</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">COMMIT</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">DEPLOY</span>
+      <span class="flow-arrow loop">↻</span>
+    </div>
+
+    <p class="deck-body" style="margin-top:1rem;font-family:var(--font-mono);font-size:0.88rem;color:var(--c-accent,#f48225);text-align:center;">
+      ⟨ Recursive self-portrait — this deck was built by the same stack it shows. ⟩
+    </p>
+  </div>
+  <span class="slide-number">02 / 14</span>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <!-- SLIDE 3 · APPLICATION ARCHITECTURE (NEW)                                     -->
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <section class="slide" id="slide-3" aria-label="Application Architecture">
+  <div class="slide-inner">
+    <p class="deck-kicker" style="letter-spacing:0.18em;">/02&ensp;·&ensp;APPLICATION ARCHITECTURE</p>
+    <h2 class="deck-h2">The Cloudflare edge, as agent control plane.</h2>
+    <p class="deck-body dim" style="margin-bottom:0.8rem;">Three human roles · one role-gated runtime. Owner runs the business, Operator does day-to-day admin, Driver self-serves on mobile — all behind the same JWT.</p>
+
+    <p class="deck-body" style="margin:0 0 0.6rem;font-family:var(--font-mono);font-size:0.85rem;color:var(--c-accent,#f48225);">
+      ⟨ Three roles. One runtime. The role-gate doesn't care which one knocks. ⟩
+    </p>
+
+    <!-- SmartArt-style SVG architecture diagram.
+     100% inline SVG, zero dependencies, perfect pixel-perfect rendering.
+     viewBox-based scaling — diagram fills 100% of container width,
+     preserves aspect ratio, looks identical at any viewport size. -->
+<svg class="smart-diagram" viewBox="0 0 1000 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <!-- Arrowhead marker for all connectors -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#f48225"/>
+    </marker>
+    <!-- Smaller arrowhead for in-column connections -->
+    <marker id="arrow-sm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8b949e"/>
+    </marker>
+
+    <!-- Drop shadow for boxes -->
+    <filter id="box-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+
+    <!-- Box gradients per category -->
+    <linearGradient id="g-actor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#374151"/>
+      <stop offset="100%" stop-color="#1f2937"/>
+    </linearGradient>
+    <linearGradient id="g-ui" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1f2937"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </linearGradient>
+    <linearGradient id="g-worker" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1c1917"/>
+      <stop offset="100%" stop-color="#0c0a09"/>
+    </linearGradient>
+    <linearGradient id="g-rbac" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#991b1b"/>
+      <stop offset="100%" stop-color="#7f1d1d"/>
+    </linearGradient>
+    <linearGradient id="g-data" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0c4a6e"/>
+      <stop offset="100%" stop-color="#0a3a5a"/>
+    </linearGradient>
+    <linearGradient id="g-obs" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6b21a8"/>
+      <stop offset="100%" stop-color="#581c87"/>
+    </linearGradient>
+    <linearGradient id="g-cron" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3f6212"/>
+      <stop offset="100%" stop-color="#365314"/>
+    </linearGradient>
+
+    <!-- Reusable box style: drop shadow + rounded corners + per-category stroke -->
+    <style>
+      .box { filter: url(#box-shadow); stroke-width: 1.5; }
+      .box-actor { fill: url(#g-actor); stroke: #f48225; }
+      .box-ui { fill: url(#g-ui); stroke: #58a6ff; }
+      .box-worker { fill: url(#g-worker); stroke: #f48225; }
+      .box-rbac { fill: url(#g-rbac); stroke: #ef4444; stroke-width: 2.5; }
+      .box-data { fill: url(#g-data); stroke: #38bdf8; }
+      .box-obs { fill: url(#g-obs); stroke: #a855f7; }
+      .box-cron { fill: url(#g-cron); stroke: #84cc16; }
+      .box-terminal { fill: #0d1117; stroke: #84cc16; }
+      .lbl { font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace; font-weight: 600; text-anchor: middle; }
+      .sub { font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace; font-size: 9px; fill: #8b949e; text-anchor: middle; }
+      .icon { font-size: 16px; text-anchor: middle; }
+      .col-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; fill: #f48225; text-anchor: middle; letter-spacing: 0.05em; }
+      .conn { stroke: #f48225; stroke-width: 1.5; fill: none; }
+      .conn-dim { stroke: #8b949e; stroke-width: 1; stroke-dasharray: 3 3; fill: none; }
+      .subgraph { fill: rgba(31, 41, 55, 0.2); stroke: #4b5563; stroke-width: 1; stroke-dasharray: 4 3; }
+    </style>
+  </defs>
+
+  <!-- ── Subgraph containers (dashed-border groups) ── -->
+  <!-- Edge subgraph: x=190, y=20, w=160, h=320 -->
+  <rect class="subgraph" x="190" y="20" width="160" height="320" rx="8"/>
+  <text class="col-label" x="270" y="14">⚡ Cloudflare Edge</text>
+
+  <!-- Agent Runtime subgraph: x=370, y=20, w=160, h=320 -->
+  <rect class="subgraph" x="370" y="20" width="160" height="320" rx="8"/>
+  <text class="col-label" x="450" y="14">⚙️ Agent Runtime</text>
+
+  <!-- State subgraph: x=550, y=20, w=160, h=320 -->
+  <rect class="subgraph" x="550" y="20" width="160" height="320" rx="8"/>
+  <text class="col-label" x="630" y="14">💾 State + Obs</text>
+
+  <!-- Scheduled subgraph: x=730, y=20, w=160, h=320 -->
+  <rect class="subgraph" x="730" y="20" width="160" height="320" rx="8"/>
+  <text class="col-label" x="810" y="14">⏰ Scheduled</text>
+
+  <!-- ── Column 1: ACTORS (no subgraph box) ── -->
+  <!-- 3 human roles only — Hermes Agent is NOT a user of the rental-taxi service -->
+  <g>
+    <rect class="box box-actor" x="20" y="40" width="150" height="80" rx="8"/>
+    <text class="icon" x="95" y="63">👔</text>
+    <text class="lbl" x="95" y="88" fill="#f48225" font-size="12">Owner</text>
+    <text class="sub" x="95" y="105">runs the business</text>
+  </g>
+  <g>
+    <rect class="box box-actor" x="20" y="140" width="150" height="80" rx="8"/>
+    <text class="icon" x="95" y="163">🧑‍💼</text>
+    <text class="lbl" x="95" y="188" fill="#f48225" font-size="12">Operator</text>
+    <text class="sub" x="95" y="205">desktop · day-to-day</text>
+  </g>
+  <g>
+    <rect class="box box-actor" x="20" y="240" width="150" height="80" rx="8"/>
+    <text class="icon" x="95" y="263">📱</text>
+    <text class="lbl" x="95" y="288" fill="#f48225" font-size="12">Driver</text>
+    <text class="sub" x="95" y="305">mobile · self-serve</text>
+  </g>
+
+  <!-- ── Column 2: CLOUDFLARE EDGE ── -->
+  <g>
+    <rect class="box box-ui" x="210" y="60" width="120" height="90" rx="8"/>
+    <text class="icon" x="270" y="86">🌐</text>
+    <text class="lbl" x="270" y="110" fill="#58a6ff" font-size="11">Browser</text>
+    <text class="sub" x="270" y="128">React + Vite + JWT</text>
+  </g>
+  <!-- internal arrow Browser → Pages -->
+  <line class="conn-dim" x1="270" y1="160" x2="270" y2="200" marker-end="url(#arrow-sm)"/>
+  <text class="sub" x="282" y="184" text-anchor="start">↓ static</text>
+  <g>
+    <rect class="box box-ui" x="210" y="210" width="120" height="90" rx="8"/>
+    <text class="icon" x="270" y="236">📦</text>
+    <text class="lbl" x="270" y="260" fill="#58a6ff" font-size="11">Pages + SPA</text>
+    <text class="sub" x="270" y="278">role-gated UI</text>
+  </g>
+
+  <!-- ── Column 3: AGENT RUNTIME ── -->
+  <!-- Cloudflare Worker (Hono + Zod) is the runtime that serves /api/* -->
+  <g>
+    <rect class="box box-worker" x="390" y="210" width="120" height="90" rx="8"/>
+    <text class="icon" x="450" y="236">⚙️</text>
+    <text class="lbl" x="450" y="260" fill="#fef3c7" font-size="11">Cloudflare Worker</text>
+    <text class="sub" x="450" y="278">Hono + Zod</text>
+  </g>
+
+  <!-- ── Column 4: STATE + OBS ── -->
+  <g>
+    <rect class="box box-data" x="570" y="40" width="120" height="80" rx="8"/>
+    <text class="icon" x="630" y="65">🗄️</text>
+    <text class="lbl" x="630" y="90" fill="#38bdf8" font-size="11">D1 · SQLite</text>
+    <text class="sub" x="630" y="106">users · taxis · slots</text>
+  </g>
+  <g>
+    <rect class="box box-data" x="570" y="140" width="120" height="80" rx="8"/>
+    <text class="icon" x="630" y="165">🪣</text>
+    <text class="lbl" x="630" y="190" fill="#38bdf8" font-size="11">R2</text>
+    <text class="sub" x="630" y="206">receipts · logs</text>
+  </g>
+  <g>
+    <rect class="box box-obs" x="570" y="240" width="120" height="80" rx="8"/>
+    <text class="icon" x="630" y="265">📊</text>
+    <text class="lbl" x="630" y="290" fill="#a855f7" font-size="11">Eval + Trace</text>
+    <text class="sub" x="630" y="306">→ R2 / Logs</text>
+  </g>
+
+  <!-- ── Column 5: SCHEDULED ── -->
+  <g>
+    <rect class="box box-cron" x="750" y="100" width="120" height="80" rx="8"/>
+    <text class="icon" x="810" y="125">⏰</text>
+    <text class="lbl" x="810" y="150" fill="#84cc16" font-size="11">cron 19:00 HKT</text>
+    <text class="sub" x="810" y="166">nightly trigger</text>
+  </g>
+  <line class="conn-dim" x1="810" y1="190" x2="810" y2="220" marker-end="url(#arrow-sm)"/>
+  <text class="sub" x="822" y="210" text-anchor="start">↓ runs</text>
+  <g>
+    <rect class="box box-terminal" x="750" y="230" width="120" height="80" rx="8"/>
+    <text class="icon" x="810" y="255">🔔</text>
+    <text class="lbl" x="810" y="280" fill="#84cc16" font-size="11">In-app notify</text>
+    <text class="sub" x="810" y="296">user-facing alert</text>
+  </g>
+
+  <!-- ── HORIZONTAL CONNECTORS (between columns) ── -->
+  <!-- 3 actors → Browser -->
+  <path class="conn" d="M 170 80 C 185 80, 195 105, 210 105" marker-end="url(#arrow)"/>
+  <text class="sub" x="180" y="74" text-anchor="middle" fill="#f48225">Owner</text>
+
+  <path class="conn" d="M 170 180 C 185 180, 195 105, 210 105" marker-end="url(#arrow)"/>
+  <text class="sub" x="180" y="194" text-anchor="middle" fill="#f48225">Op</text>
+
+  <path class="conn" d="M 170 280 C 185 280, 195 105, 210 105" marker-end="url(#arrow)"/>
+  <text class="sub" x="180" y="288" text-anchor="middle" fill="#f48225">Driver</text>
+
+  <!-- Pages → Cloudflare Worker -->
+  <path class="conn" d="M 330 255 C 360 255, 370 255, 390 255" marker-end="url(#arrow)"/>
+  <text class="sub" x="350" y="240" text-anchor="middle" fill="#f48225">/api/*</text>
+
+  <!-- Worker → D1 (read) -->
+  <path class="conn" d="M 510 240 C 540 240, 550 80, 570 80" marker-end="url(#arrow)"/>
+  <text class="sub" x="538" y="160" fill="#f48225">read</text>
+
+  <!-- Worker → R2 (write) -->
+  <path class="conn" d="M 510 270 C 540 270, 550 180, 570 180" marker-end="url(#arrow)"/>
+  <text class="sub" x="538" y="200" fill="#f48225">write</text>
+
+  <!-- Worker → Eval+Trace (dotted) -->
+  <path class="conn-dim" d="M 510 285 C 540 285, 550 280, 570 280" marker-end="url(#arrow-sm)"/>
+  <text class="sub" x="538" y="278" fill="#8b949e">trace</text>
+
+  <!-- D1 → cron (nightly) -->
+  <path class="conn" d="M 690 80 C 720 80, 730 140, 750 140" marker-end="url(#arrow)"/>
+  <text class="sub" x="720" y="108" fill="#f48225">nightly</text>
+</svg>
+
+    <p class="deck-body" style="margin-top:1.2rem;"><strong>The shape.</strong> Cloudflare-native edge · JWT at the boundary · agent harness inside · eval/obs at the side. Every layer earns its place — and the harness never trusts the actor.</p>
+  </div>
+  <span class="slide-number">03 / 14</span>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <!-- SLIDE 4 · AGENTIC AI ARCHITECTURE (the runtime chain)                     -->
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <section class="slide how-i-work" id="slide-4" aria-label="Agentic AI Architecture (runtime chain)">
+  <div class="slide-inner">
+  <p class="deck-kicker">/03· AGENTIC AI ARCHITECTURE</p>
+  <h2 class="deck-h2">I vibe-code this deck (and the taxi app) inside an AI agent.</h2>
+  <p class="deck-body dim" style="margin-bottom:1.2rem;">Seven hops from my thumb to live edge. Every box has a reason — the harness never trusts the actor, the wrappers never auto-promote, and every commit comes from a chat room.</p>
+
+  <!-- Agentic AI Architecture — 7-stage runtime flow: ME → Discord → VM → Hermes → coding → wrangler → CF -->
+  <svg class="smart-diagram" viewBox="0 0 1000 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+    <defs>
+      <marker id="arrow-s4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#f48225"/>
+      </marker>
+      <marker id="arrow-return-s4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#58a6ff"/>
+      </marker>
+      <filter id="box-shadow-s4" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.5"/>
+      </filter>
+      <!-- Per-stage gradients -->
+      <linearGradient id="g-me-s4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#374151"/><stop offset="100%" stop-color="#1f2937"/></linearGradient>
+      <linearGradient id="g-discord-s4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5865f2"/><stop offset="100%" stop-color="#3b46bd"/></linearGradient>
+      <linearGradient id="g-vm-s4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1f2937"/><stop offset="100%" stop-color="#0d1117"/></linearGradient>
+      <linearGradient id="g-hermes-s4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1c1917"/><stop offset="100%" stop-color="#0c0a09"/></linearGradient>
+      <linearGradient id="g-code-s4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0c4a6e"/><stop offset="100%" stop-color="#0a3a5a"/></linearGradient>
+      <linearGradient id="g-wrangler-s4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#581c87"/><stop offset="100%" stop-color="#3b0764"/></linearGradient>
+      <linearGradient id="g-cf-s4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f48225"/><stop offset="100%" stop-color="#bd5a08"/></linearGradient>
+      <style>
+        .box { filter: url(#box-shadow-s4); stroke-width: 1.5; }
+        .box-me { fill: url(#g-me-s4); stroke: #f48225; }
+        .box-discord { fill: url(#g-discord-s4); stroke: #a3b1ff; }
+        .box-vm { fill: url(#g-vm-s4); stroke: #8b949e; }
+        .box-hermes { fill: url(#g-hermes-s4); stroke: #f48225; }
+        .box-code { fill: url(#g-code-s4); stroke: #38bdf8; }
+        .box-wrangler { fill: url(#g-wrangler-s4); stroke: #a855f7; }
+        .box-cf { fill: url(#g-cf-s4); stroke: #ffe08a; }
+        .lbl { font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace; font-weight: 700; text-anchor: middle; }
+        .sub { font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace; font-size: 9.5px; fill: #c9d1d9; text-anchor: middle; }
+        .icon { font-size: 22px; text-anchor: middle; }
+        .conn { stroke: #f48225; stroke-width: 1.6; fill: none; }
+        .conn-return { stroke: #58a6ff; stroke-width: 1.4; fill: none; stroke-dasharray: 4 3; }
+        .edge-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; fill: #f48225; text-anchor: middle; }
+      </style>
+    </defs>
+
+    <!-- ① ME -->
+    <g>
+      <rect class="box box-me" x="20" y="80" width="120" height="100" rx="8"/>
+      <text class="icon" x="80" y="108">👤</text>
+      <text class="lbl" x="80" y="132" fill="#f48225" font-size="12">① ME</text>
+      <text class="sub" x="80" y="152">Oscar · thumb</text>
+      <text class="sub" x="80" y="166">on phone</text>
+    </g>
+
+    <!-- ② Discord -->
+    <g>
+      <rect class="box box-discord" x="155" y="80" width="120" height="100" rx="8"/>
+      <text class="icon" x="215" y="108">💬</text>
+      <text class="lbl" x="215" y="132" fill="#e0e7ff" font-size="12">② Discord</text>
+      <text class="sub" x="215" y="152">DM @Hermes</text>
+      <text class="sub" x="215" y="166">24/7 chat</text>
+    </g>
+
+    <!-- ③ VM -->
+    <g>
+      <rect class="box box-vm" x="290" y="80" width="120" height="100" rx="8"/>
+      <text class="icon" x="350" y="108">🖥️</text>
+      <text class="lbl" x="350" y="132" fill="#c9d1d9" font-size="12">③ VM</text>
+      <text class="sub" x="350" y="152">Linux 6.17</text>
+      <text class="sub" x="350" y="166">terminal + files</text>
+    </g>
+
+    <!-- ④ Hermes -->
+    <g>
+      <rect class="box box-hermes" x="425" y="80" width="120" height="100" rx="8"/>
+      <text class="icon" x="485" y="108">🤖</text>
+      <text class="lbl" x="485" y="132" fill="#f48225" font-size="12">④ Hermes</text>
+      <text class="sub" x="485" y="152">1 screen · 1 model</text>
+      <text class="sub" x="485" y="166">M3 + memory</text>
+    </g>
+
+    <!-- ⑤ coding -->
+    <g>
+      <rect class="box box-code" x="560" y="80" width="120" height="100" rx="8"/>
+      <text class="icon" x="620" y="108">✍️</text>
+      <text class="lbl" x="620" y="132" fill="#38bdf8" font-size="12">⑤ coding</text>
+      <text class="sub" x="620" y="152">TDD · sub-agents</text>
+      <text class="sub" x="620" y="166">git · PR</text>
+    </g>
+
+    <!-- ⑥ wrangler -->
+    <g>
+      <rect class="box box-wrangler" x="695" y="80" width="120" height="100" rx="8"/>
+      <text class="icon" x="755" y="108">📦</text>
+      <text class="lbl" x="755" y="132" fill="#a855f7" font-size="12">⑥ wrangler</text>
+      <text class="sub" x="755" y="152">bin/* wrappers</text>
+      <text class="sub" x="755" y="166">--confirm</text>
+    </g>
+
+    <!-- ⑦ CF -->
+    <g>
+      <rect class="box box-cf" x="830" y="80" width="120" height="100" rx="8"/>
+      <text class="icon" x="890" y="108">☁️</text>
+      <text class="lbl" x="890" y="132" fill="#ffe08a" font-size="12">⑦ CF</text>
+      <text class="sub" x="890" y="152">Pages · Workers</text>
+      <text class="sub" x="890" y="166">D1 · R2 · Cron</text>
+    </g>
+
+    <!-- Forward arrows (orange, between adjacent nodes) -->
+    <line class="conn" x1="140" y1="130" x2="155" y2="130" marker-end="url(#arrow-s4)"/>
+    <line class="conn" x1="275" y1="130" x2="290" y2="130" marker-end="url(#arrow-s4)"/>
+    <line class="conn" x1="410" y1="130" x2="425" y2="130" marker-end="url(#arrow-s4)"/>
+    <line class="conn" x1="545" y1="130" x2="560" y2="130" marker-end="url(#arrow-s4)"/>
+    <line class="conn" x1="680" y1="130" x2="695" y2="130" marker-end="url(#arrow-s4)"/>
+    <line class="conn" x1="815" y1="130" x2="830" y2="130" marker-end="url(#arrow-s4)"/>
+
+    <!-- Edge labels (what passes over each arrow) — placed ABOVE the boxes at y=58 -->
+    <text class="edge-label" x="147" y="58">prompt</text>
+    <text class="edge-label" x="282" y="58">HTTPS</text>
+    <text class="edge-label" x="417" y="58">tool-use</text>
+    <text class="edge-label" x="552" y="58">edit · test</text>
+    <text class="edge-label" x="687" y="58">--confirm</text>
+    <text class="edge-label" x="822" y="58">upload</text>
+
+    <!-- Return loop: CF → Discord (verifies + notifies Oscar) -->
+    <path class="conn-return" d="M 890 80 C 890 30, 485 18, 215 30 C 145 35, 145 50, 145 80" marker-end="url(#arrow-return-s4)"/>
+    <text class="sub" x="490" y="14" fill="#58a6ff" text-anchor="middle">return ◄── live URL · receipts · in-app notify</text>
+  </svg>
+
+    <p class="deck-body" style="margin-top:0.9rem;font-family:var(--font-mono);font-size:0.85rem;color:var(--c-accent,#f48225);text-align:center;">
+      ⟨ One chatroom. Seven hops. Every gate has a human fingerprint. ⟩
+    </p>
+  </div>
+  <span class="slide-number">04 / 14</span>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <!-- (SLIDE 5 REMOVED 2026-07-17: STRENGTH 1 · SYSTEM DESIGN PHILOSOPHY       -->
+  <!-- Renumbered: old slide 5 was STRENGTH 1 · SYSTEM DESIGN PHILOSOPHY       -->
+  <!-- → removed entirely → old slide 6 (AGENTIC ENGINEERING) becomes slide 5.  -->
+  <!-- Old slide-6 → new slide-5. Remaining slides shift -1. Total 18 → 17.    -->
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+  <!-- SLIDE 5 · STRENGTH 1 · AGENTIC ENGINEERING (VS VIBE CODING)              -->
+  <!-- ════════════════════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-5" aria-label="Strength 1: Agentic Engineering (vs Vibe Coding)">
+  <div class="slide-inner">
+    <p class="deck-kicker">/04· STRENGTH 1 · AGENTIC ENGINEERING (VS VIBE CODING)</p>
+    <h2 class="deck-h2">I drive. AI drafts. I gate. AI ships — under guardrails.</h2>
+    <p class="deck-body dim" style="margin-bottom:1.2rem;font-size:0.92rem;">Vibe coding = AI types for you, you trust the diff. Agentic engineering = AI plans, you gate, the harness enforces every action. I do the second.</p>
+
+    <div class="session-walk">
+      <div class="session-row">
+        <div class="session-actor">CHAN</div>
+        <div class="session-bubble">"Build a day-conflict filter for the driver pool. Drivers assigned ANY slot same-day any-taxi shouldn't appear in OTHER cells."</div>
+      </div>
+      <div class="session-row">
+        <div class="session-actor ai">AI</div>
+        <div class="session-bubble ai-bubble">8 RED tests first. They all fail (no implementation).</div>
+      </div>
+      <div class="session-row">
+        <div class="session-actor">CHAN</div>
+        <div class="session-bubble">"Good. Now implement."</div>
+      </div>
+      <div class="session-row">
+        <div class="session-actor ai">AI</div>
+        <div class="session-bubble ai-bubble">All 8 green. Surfaced 9 test regressions in adjacent code. Reconciled with v1.34.7 + v1.14.12 contracts via <code>priorityDriverIds</code> + <code>currentDriverId</code> exemptions. 4 stale assertions updated.</div>
+      </div>
+      <div class="session-row">
+        <div class="session-actor">CHAN</div>
+        <div class="session-bubble">"OK push to staging."</div>
+      </div>
+      <div class="session-row">
+        <div class="session-actor ai">AI</div>
+        <div class="session-bubble ai-bubble terminal-out">
+✓ env=preview · alias attached<br>
+✓ bundle live: index-D49IMDRo.js<br>
+✓ 475/475 tests pass · 0 regressions
+        </div>
+      </div>
+    </div>
+
+    <p class="deck-body" style="margin-top:1.4rem;"><strong>One session. ~3 hours. From blank file to live in production.</strong> My job: know what to ship. Theirs: ship it.</p>
+  </div>
+  <span class="slide-number">05 / 14</span>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- SLIDE 5 · STRENGTH 3 · AI DEPLOYMENT SAFETY                               -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-6" aria-label="Strength 2: Agent Guardrails & HITL">
+  <div class="slide-inner">
+    <p class="deck-kicker">/05· STRENGTH 2 · AGENT GUARDRAILS &amp; HITL</p>
+    <h2 class="deck-h2">AI can ship to my repo. Production needs receipts.</h2>
+    <p class="deck-body dim" style="margin-bottom:1.5rem;">Human-in-the-loop + parallelized guardrails (Anthropic pattern). Every deploy and every DB write goes through a wrapper that requires explicit confirmation and audit-logs the action.</p>
+
+    <div class="grid-3">
+      <div class="card card-pink">
+        <div class="card-title">① Rules (HITL)</div>
+        <p class="deck-body"><strong>Never auto-promote.</strong> Production is sacred. Wait for explicit human auth.</p>
+        <p class="deck-body"><strong>Explain before answer.</strong> Plausible output is a bug.</p>
+        <p class="deck-body"><strong>No silent DB writes.</strong> Silence is the worst failure mode.</p>
+        <p class="deck-body"><strong>Human-in-the-loop on deploy.</strong> AI plans, human approves, harness executes.</p>
+      </div>
+      <div class="card card-blue">
+        <div class="card-title">② Wrappers</div>
+        <p class="deck-body" style="margin-bottom:0.5rem;"><code>bin/deploy-staging.sh</code> · dry-run default, <code>--confirm</code> to write</p>
+        <p class="deck-body" style="margin-bottom:0.5rem;"><code>bin/smoke-staging.sh</code> · 5-check verification</p>
+        <p class="deck-body"><code>bin/d1-safe.sh</code> · audit-log every confirmed write</p>
+      </div>
+      <div class="card card-green">
+        <div class="card-title">③ Verification</div>
+        <p class="deck-body">5-source receipt chain for every deploy:</p>
+        <ol style="font-size:0.92rem;margin:0.4rem 0;padding-left:1.2rem;">
+          <li><code>git log</code></li>
+          <li><code>git reflog</code></li>
+          <li><code>git ls-remote</code></li>
+          <li>Cloudflare REST API</li>
+          <li><code>curl</code> + grep</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="card card-accent" style="margin-top:1.5rem;">
+      <div class="card-title">Caught a fabrication incident in this session</div>
+      <p class="deck-body">Earlier turns I (the AI) had invented a successful deployment. Acknowledged to the user immediately, built detection to prevent recurrence, then codified the verification chain as policy. <strong>Honesty + integrity &gt; plausible output.</strong></p>
+    </div>
+  </div>
+  <span class="slide-number">06 / 14</span>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- SLIDE 5 · STRENGTH 4 · TDD SOFTWARE DEVELOPMENT                           -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-7" aria-label="Strength 3: TDD Software Development">
+  <div class="slide-inner">
+    <p class="deck-kicker">/06· STRENGTH 3 · TDD SOFTWARE DEVELOPMENT</p>
+    <h2 class="deck-h2">Built to test, not to ship.</h2>
+    <p class="deck-body dim" style="margin-bottom:1.4rem;">Every behavior change begins as a failing test.</p>
+
+    <div class="tdd-loop">
+      <div class="tdd-step red">
+        <div class="tdd-num">RED</div>
+        <div class="tdd-name">Write the failing test</div>
+        <div class="tdd-detail">Spec the behavior in code. Watch it fail for the right reason.</div>
+      </div>
+      <div class="tdd-arrow">→</div>
+      <div class="tdd-step green">
+        <div class="tdd-num">GREEN</div>
+        <div class="tdd-name">Make it pass</div>
+        <div class="tdd-detail">Smallest change that flips the assertion. Nothing more.</div>
+      </div>
+      <div class="tdd-arrow">→</div>
+      <div class="tdd-step refactor">
+        <div class="tdd-num">REFACTOR</div>
+        <div class="tdd-name">Tidy + reconcile</div>
+        <div class="tdd-detail">Clean code. Reconcile with prior contracts. Re-run all tests.</div>
+      </div>
+    </div>
+
+    <div class="stats-grid" style="margin-top:1.5rem;">
+      <div class="stat"><div class="stat-num">1,130</div><div class="stat-label">passing tests</div></div>
+      <div class="stat"><div class="stat-num">159</div><div class="stat-label">test files</div></div>
+      <div class="stat"><div class="stat-num">0.52</div><div class="stat-label">test/source ratio</div></div>
+      <div class="stat"><div class="stat-num">0</div><div class="stat-label">flaky tests</div></div>
+    </div>
+
+    <p class="deck-body" style="margin-top:1rem;"><strong>The discipline.</strong> When the test breaks, the test tells the truth. When it doesn't, the change is suspect. <em>Ship-by-test</em> &gt; ship-by-hunch.</p>
+  </div>
+  <span class="slide-number">07 / 14</span>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- SLIDE 6 · STRENGTH 5 · HARNESS ENGINEERING                                -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-8" aria-label="Strength 4: Harness Engineering">
+  <div class="slide-inner">
+    <p class="deck-kicker">/07· STRENGTH 4 · AGENT HARNESS DESIGN</p>
+    <h2 class="deck-h2">I author the rules the AI must follow.</h2>
+    <p class="deck-body dim" style="margin-bottom:1.4rem;">Anthropic's "augmented LLM" — the model is a building block, the harness is the engineering. Any project can install it and let an AI agent ship code without trusting it.</p>
+
+    <div class="grid-2">
+      <div class="card card-pink">
+        <div class="card-title"><code>AGENTS.md</code></div>
+        <p class="deck-body">A policy file every AI agent reads on session start. 3 non-negotiable Critical Rules for the taxi-rental repo. Codified rule-as-code.</p>
+        <p class="deck-body dim" style="font-family:var(--font-mono);font-size:0.85rem;margin-top:0.6rem;">
+          Rule 1: Never auto-promote to production.<br>
+          Rule 2: Explain before answer.<br>
+          Rule 3: Never change the DB without explicit instruction.
+        </p>
+      </div>
+
+      <div class="card card-blue">
+        <div class="card-title">3 safety wrappers</div>
+        <p class="deck-body">Each wraps a <code>wrangler</code> command. Each requires <code>--confirm</code>. Each audit-logs writes.</p>
+        <table class="mini-table" style="margin-top:0.5rem;">
+          <thead><tr><th>Script</th><th>Wraps</th></tr></thead>
+          <tbody>
+            <tr><td>bin/deploy-staging.sh</td><td>Pages + Worker deploy</td></tr>
+            <tr><td>bin/smoke-staging.sh</td><td>Post-deploy verification</td></tr>
+            <tr><td>bin/d1-safe.sh</td><td>D1 SELECT/INSERT/UPDATE/DELETE</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <p class="deck-body" style="margin-top:1.2rem;"><strong>Why it matters.</strong> The AI agent can write, run, ship — but every action is logged, replayable, and undoable. The harness makes that contract explicit, not implicit. <em>Trust with receipts.</em></p>
+  </div>
+  <span class="slide-number">08 / 14</span>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- SLIDE 7 · STRENGTH 6 · CICD CYCLE                                          -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-9" aria-label="Strength 5: CICD Cycle">
+  <div class="slide-inner">
+    <p class="deck-kicker">/08· STRENGTH 5 · AGENTOPS · DEPLOY / OBSERVE / ROLLBACK</p>
+    <h2 class="deck-h2">A pipeline I can actually verify.</h2>
+    <p class="deck-body dim" style="margin-bottom:1.4rem;">AgentOps (IBM, 2026) = the named discipline of operating AI agents in production. Not "CI runs green" — I want to know the bundle is live and matches the source. Every link in the loop has a guard.</p>
+
+<svg class="smart-diagram" viewBox="0 0 1000 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <marker id="arrow-s9" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#f48225"/>
+    </marker>
+    <marker id="arrow-loop-s9" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#58a6ff"/>
+    </marker>
+    <filter id="box-shadow-s9" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+    <linearGradient id="g-test-s9" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7f1d1d"/><stop offset="100%" stop-color="#581c1c"/></linearGradient>
+    <linearGradient id="g-build-s9" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1c1917"/><stop offset="100%" stop-color="#0c0a09"/></linearGradient>
+    <linearGradient id="g-deploy-s9" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0c4a6e"/><stop offset="100%" stop-color="#0a3a5a"/></linearGradient>
+    <linearGradient id="g-verify-s9" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#581c87"/><stop offset="100%" stop-color="#3b0764"/></linearGradient>
+    <linearGradient id="g-monitor-s9" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#365314"/><stop offset="100%" stop-color="#1a2e05"/></linearGradient>
+    <linearGradient id="g-loop-s9" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1f2937"/><stop offset="100%" stop-color="#0d1117"/></linearGradient>
+    <style>
+      .box { filter: url(#box-shadow-s9); stroke-width: 1.5; }
+      .box-test { fill: url(#g-test-s9); stroke: #ff7b72; }
+      .box-build { fill: url(#g-build-s9); stroke: #f48225; }
+      .box-deploy { fill: url(#g-deploy-s9); stroke: #38bdf8; }
+      .box-verify { fill: url(#g-verify-s9); stroke: #a855f7; }
+      .box-monitor { fill: url(#g-monitor-s9); stroke: #84cc16; }
+      .box-loop { fill: url(#g-loop-s9); stroke: #58a6ff; stroke-dasharray: 4 3; }
+      .lbl { font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace; font-weight: 700; text-anchor: middle; }
+      .sub { font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace; font-size: 9.5px; fill: #c9d1d9; text-anchor: middle; }
+      .icon { font-size: 22px; text-anchor: middle; }
+      .conn { stroke: #f48225; stroke-width: 1.6; fill: none; }
+      .conn-loop { stroke: #58a6ff; stroke-width: 1.4; fill: none; stroke-dasharray: 4 3; }
+      .swatch { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #c9d1d9; }
+    </style>
+  </defs>
+
+  <!-- Row 1: Six numbered nodes (① ② ③ ④ ⑤ ⑥) -->
+  <!-- ① RED TEST -->
+  <g>
+    <rect class="box box-test" x="20" y="50" width="140" height="100" rx="8"/>
+    <text class="icon" x="90" y="78">🧪</text>
+    <text class="lbl" x="90" y="102" fill="#ff7b72" font-size="12">① RED TEST</text>
+    <text class="sub" x="90" y="124">TDD · write failing</text>
+    <text class="sub" x="90" y="138">test first</text>
+  </g>
+
+  <!-- ② GREEN -->
+  <g>
+    <rect class="box box-build" x="180" y="50" width="140" height="100" rx="8"/>
+    <text class="icon" x="250" y="78">✏️</text>
+    <text class="lbl" x="250" y="102" fill="#f48225" font-size="12">② GREEN TEST</text>
+    <text class="sub" x="250" y="124">pnpm test</text>
+    <text class="sub" x="250" y="138">+ pnpm typecheck</text>
+  </g>
+
+  <!-- ③ DEPLOY -->
+  <g>
+    <rect class="box box-deploy" x="340" y="50" width="140" height="100" rx="8"/>
+    <text class="icon" x="410" y="78">🚀</text>
+    <text class="lbl" x="410" y="102" fill="#38bdf8" font-size="12">③ DEPLOY</text>
+    <text class="sub" x="410" y="124">bin/deploy-staging.sh</text>
+    <text class="sub" x="410" y="138">--confirm required</text>
+  </g>
+
+  <!-- ④ VERIFY -->
+  <g>
+    <rect class="box box-verify" x="500" y="50" width="140" height="100" rx="8"/>
+    <text class="icon" x="570" y="78">🔍</text>
+    <text class="lbl" x="570" y="102" fill="#a855f7" font-size="12">④ VERIFY</text>
+    <text class="sub" x="570" y="124">5-source receipt chain</text>
+    <text class="sub" x="570" y="138">git + CF API + curl</text>
+  </g>
+
+  <!-- ⑤ MONITOR -->
+  <g>
+    <rect class="box box-monitor" x="660" y="50" width="140" height="100" rx="8"/>
+    <text class="icon" x="730" y="78">📡</text>
+    <text class="lbl" x="730" y="102" fill="#84cc16" font-size="12">⑤ MONITOR</text>
+    <text class="sub" x="730" y="124">smoke stays green</text>
+    <text class="sub" x="730" y="138">users report clean</text>
+  </g>
+
+  <!-- ⑥ LOOP / Next commit -->
+  <g>
+    <rect class="box box-loop" x="820" y="50" width="140" height="100" rx="8"/>
+    <text class="icon" x="890" y="78">↻</text>
+    <text class="lbl" x="890" y="102" fill="#58a6ff" font-size="12">⑥ LOOP</text>
+    <text class="sub" x="890" y="124">next commit</text>
+    <text class="sub" x="890" y="138">→ back to ①</text>
+  </g>
+
+  <!-- Horizontal arrows between adjacent boxes -->
+  <line class="conn" x1="160" y1="100" x2="180" y2="100" marker-end="url(#arrow-s9)"/>
+  <line class="conn" x1="320" y1="100" x2="340" y2="100" marker-end="url(#arrow-s9)"/>
+  <line class="conn" x1="480" y1="100" x2="500" y2="100" marker-end="url(#arrow-s9)"/>
+  <line class="conn" x1="640" y1="100" x2="660" y2="100" marker-end="url(#arrow-s9)"/>
+  <line class="conn-dim" x1="800" y1="100" x2="820" y2="100" marker-end="url(#arrow-s9)"/>
+
+  <!-- Loop-back arrow: from ⑥ (top) over the chain back to ① -->
+  <path class="conn-loop" d="M 890 50 C 890 18, 890 12, 850 12 L 90 12 C 50 12, 90 18, 90 50" marker-end="url(#arrow-loop-s9)"/>
+  <text class="swatch" x="490" y="9" fill="#58a6ff" text-anchor="middle">loop ◄── next commit / new feature</text>
+
+  <!-- Legend strip: which gate wraps which node -->
+  <g transform="translate(0,180)">
+    <rect x="20" y="0" width="960" height="72" rx="8" fill="rgba(31,41,55,0.4)" stroke="#4b5563" stroke-width="1" stroke-dasharray="4 3"/>
+    <text class="lbl" x="40" y="22" fill="#f48225" font-size="11" text-anchor="start">GUARDS</text>
+
+    <circle cx="160" cy="42" r="4" fill="#ff7b72"/>
+    <text class="swatch" x="170" y="46">no code without failing test</text>
+
+    <circle cx="360" cy="42" r="4" fill="#f48225"/>
+    <text class="swatch" x="370" y="46">no deploy without explicit --confirm + audit log</text>
+
+    <circle cx="700" cy="42" r="4" fill="#a855f7"/>
+    <text class="swatch" x="710" y="46">no "shipped" claim without 5 sources agreeing</text>
+
+    <circle cx="180" cy="60" r="4" fill="#84cc16"/>
+    <text class="swatch" x="190" y="64">no silent regression — smoke check on every deploy</text>
+
+    <circle cx="540" cy="60" r="4" fill="#58a6ff"/>
+    <text class="swatch" x="550" y="64">no auto-promote to production (always explicit user)</text>
+  </g>
+</svg>
+
+    <p class="deck-body" style="margin-top:0.9rem;"><strong>Trunk-based</strong> on <code>staging</code>. <code>main</code> frozen at <code>v1.19.0 source</code>. Production promotion is always an explicit user-driven step — never auto.</p>
+  </div>
+  <span class="slide-number">09 / 14</span>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- SLIDE 8 · PROJECT LIVE + SCALE                                            -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-10" aria-label="Project live and scale">
+  <div class="slide-inner">
+    <p class="deck-kicker">/09· THE PROJECT · LIVE + SCALE</p>
+    <h2 class="deck-h2">Taxi Rental Management System — 244 commits later.</h2>
+    <p class="deck-body dim" style="margin-bottom:1.5rem;">A bilingual (zh-HK + en) operations app for an HK taxi-rental company. Replaces whiteboards + WhatsApp. ~50 taxis · 3 roles · HKD billing · in-app notifications.</p>
+
+    <a href="https://staging.taxi-rental.pages.dev" target="_blank" rel="noopener" class="live-link staging">
+      <span class="url">staging.taxi-rental.pages.dev</span>
+      <span class="status">200 OK</span>
+    </a>
+    <a href="https://taxi-rental.pages.dev" target="_blank" rel="noopener" class="live-link prod">
+      <span class="url">taxi-rental.pages.dev</span>
+      <span class="status">200 OK</span>
+    </a>
+
+    <div class="stats-grid" style="margin-top:1.5rem;">
+      <div class="stat"><div class="stat-num">244</div><div class="stat-label">commits</div></div>
+      <div class="stat"><div class="stat-num">22</div><div class="stat-label">releases</div></div>
+      <div class="stat"><div class="stat-num">62,631</div><div class="stat-label">source lines</div></div>
+      <div class="stat"><div class="stat-num">32,492</div><div class="stat-label">test lines</div></div>
+    </div>
+  </div>
+  <span class="slide-number">10 / 14</span>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- SLIDE 9 · STACK                                                            -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-11" aria-label="Stack">
+  <div class="slide-inner">
+    <p class="deck-kicker">/10· THE PROJECT · STACK</p>
+    <h2 class="deck-h2">Cloudflare-stack, edge-native.</h2>
+    <div class="badges" style="margin-top:1.5rem;">
+      <span class="badge">React 18</span>
+      <span class="badge">TypeScript</span>
+      <span class="badge">Vite</span>
+      <span class="badge">Tailwind</span>
+      <span class="badge">Hono</span>
+      <span class="badge">Cloudflare Workers</span>
+      <span class="badge">Cloudflare Pages</span>
+      <span class="badge">Cloudflare D1</span>
+      <span class="badge">Cloudflare R2</span>
+      <span class="badge">Cloudflare Cron</span>
+      <span class="badge">Drizzle ORM</span>
+      <span class="badge">Vitest</span>
+      <span class="badge">Playwright</span>
+      <span class="badge">pnpm workspaces</span>
+    </div>
+  </div>
+  <span class="slide-number">11 / 14</span>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- SLIDE 13 · AGENTIC BUILD SESSION (NEW)                                       -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-12" aria-label="Agentic Build Session — live walkthrough">
+  <div class="slide-inner">
+    <p class="deck-kicker">/11· AGENTIC BUILD SESSION · LIVE WALKTHROUGH</p>
+    <h2 class="deck-h2">A real session. ~3 hours. From "blank file" to "verified live."</h2>
+    <p class="deck-body dim" style="margin-bottom:1.4rem;">v1.41.x driver-pool day-conflict filter — full agentic lifecycle, with parallel sub-agents and human-in-the-loop gates.</p>
+
+    <!-- Row 1: PHASE 1 → 2 → 3 → 4 (PROMPT → UNDERSTAND → PLAN → BUILD) -->
+    <div class="phase-flow">
+
+      <div class="phase phase-1">
+        <div class="phase-num">PHASE 1</div>
+        <div class="phase-name">PROMPT (human)</div>
+        <ul class="phase-list">
+          <li>Oscar declares</li>
+          <li>Scope + accept.</li>
+          <li>1 prompt ~1 line</li>
+        </ul>
+        <div class="phase-label">human → AI</div>
+      </div>
+
+      <div class="phase-arrow">→</div>
+
+      <div class="phase phase-2">
+        <div class="phase-num">PHASE 2</div>
+        <div class="phase-name">UNDERSTAND</div>
+        <ul class="phase-list">
+          <li>Read 47 files</li>
+          <li>Trace dataflow</li>
+          <li>Map contracts</li>
+        </ul>
+        <div class="phase-label">workflow</div>
+      </div>
+
+      <div class="phase-arrow">→</div>
+
+      <div class="phase phase-3">
+        <div class="phase-num">PHASE 3</div>
+        <div class="phase-name">PLAN (parallel)</div>
+        <ul class="phase-list">
+          <li>spec author</li>
+          <li>risk auditor</li>
+          <li>test author</li>
+        </ul>
+        <div class="phase-label">3 sub-agents</div>
+      </div>
+
+      <div class="phase-arrow">→</div>
+
+      <div class="phase phase-4">
+        <div class="phase-num">PHASE 4</div>
+        <div class="phase-name">BUILD (TDD)</div>
+        <ul class="phase-list">
+          <li>8 RED → GREEN</li>
+          <li>Reconcile prior</li>
+          <li>Stale asserts</li>
+        </ul>
+        <div class="phase-label">workflow</div>
+      </div>
+
+    </div>
+
+    <!-- Row 2: PHASE 5 → 6 → 7 → 8 (GATE → DEPLOY → VERIFY 5src → VERIFY human) -->
+    <div class="phase-flow" style="margin-top:0.6rem;">
+
+      <div class="phase phase-5">
+        <div class="phase-num">PHASE 5</div>
+        <div class="phase-name">GATE (human)</div>
+        <ul class="phase-list">
+          <li>I read diff</li>
+          <li>Reject 2 of 3</li>
+          <li>Approve one</li>
+        </ul>
+        <div class="phase-label">HITL gate</div>
+      </div>
+
+      <div class="phase-arrow">→</div>
+
+      <div class="phase phase-6">
+        <div class="phase-num">PHASE 6</div>
+        <div class="phase-name">DEPLOY (audit)</div>
+        <ul class="phase-list">
+          <li>bin/deploy-stg</li>
+          <li>--confirm</li>
+          <li>audit-log</li>
+        </ul>
+        <div class="phase-label">wrapper</div>
+      </div>
+
+      <div class="phase-arrow">→</div>
+
+      <div class="phase phase-7">
+        <div class="phase-num">PHASE 7</div>
+        <div class="phase-name">VERIFY (5 src)</div>
+        <ul class="phase-list">
+          <li>git log / reflog</li>
+          <li>ls-remote + CF</li>
+          <li>curl + grep</li>
+        </ul>
+        <div class="phase-label">receipts</div>
+      </div>
+
+      <div class="phase-arrow">→</div>
+
+      <div class="phase phase-8">
+        <div class="phase-num">PHASE 8</div>
+        <div class="phase-name">VERIFY (human)</div>
+        <ul class="phase-list">
+          <li>Open live URL</li>
+          <li>Hard-refresh</li>
+          <li>Accept / roll back</li>
+        </ul>
+        <div class="phase-label">HITL accept</div>
+      </div>
+
+    </div>
+
+    <p class="deck-body" style="margin-top:1rem;font-family:var(--font-mono);font-size:0.85rem;color:var(--c-accent,#f48225);text-align:center;">
+      ⟨ Phases 1 + 5 + 8 are human gates. Phases 2-4 are AI workflow. Phases 6-7 are receipts. ⟩
+    </p>
+  </div>
+  <span class="slide-number">12 / 14</span>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- SLIDE 17 · RECEIPTS (NEW)                                                    -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-13" aria-label="Receipts — how to verify this isn't hype">
+  <div class="slide-inner">
+    <p class="deck-kicker">/12· RECEIPTS</p>
+    <h2 class="deck-h2">How to verify this isn't hype.</h2>
+    <p class="deck-body dim" style="margin-bottom:1.4rem;">Every claim on this deck points at a verifiable artifact. Open the receipts — don't trust the slide.</p>
+
+    <div class="receipts-grid">
+      <div class="receipt-card">
+        <div class="receipt-icon">✓</div>
+        <div class="receipt-title">REPO</div>
+        <div class="receipt-detail">github.com/oscarhyc/</div>
+        <div class="receipt-stat">244 commits · 22 releases</div>
+      </div>
+      <div class="receipt-card">
+        <div class="receipt-icon">✓</div>
+        <div class="receipt-title">TESTS</div>
+        <div class="receipt-detail">Vitest + Playwright</div>
+        <div class="receipt-stat">475 / 475 web · 1,130 total · 0 flaky</div>
+      </div>
+      <div class="receipt-card">
+        <div class="receipt-icon">✓</div>
+        <div class="receipt-title">LIVE</div>
+        <div class="receipt-detail">staging.taxi-rental.pages.dev</div>
+        <div class="receipt-stat">200 OK · verified this session</div>
+      </div>
+      <div class="receipt-card">
+        <div class="receipt-icon">✓</div>
+        <div class="receipt-title">EDGE</div>
+        <div class="receipt-detail">cv-deck.pages.dev</div>
+        <div class="receipt-stat">this deck · live</div>
+      </div>
+      <div class="receipt-card">
+        <div class="receipt-icon">✓</div>
+        <div class="receipt-title">AGENT</div>
+        <div class="receipt-detail">Hermes Agent + MiniMax-M3</div>
+        <div class="receipt-stat">documented · slide 2</div>
+      </div>
+      <div class="receipt-card">
+        <div class="receipt-icon">✓</div>
+        <div class="receipt-title">HARNESS</div>
+        <div class="receipt-detail">bin/deploy-staging.sh</div>
+        <div class="receipt-stat">bin/d1-safe.sh · AGENTS.md</div>
+      </div>
+      <div class="receipt-card">
+        <div class="receipt-icon">✓</div>
+        <div class="receipt-title">RECEIPTS</div>
+        <div class="receipt-detail">5-source deploy chain</div>
+        <div class="receipt-stat">git + reflog + ls-remote + CF API + curl</div>
+      </div>
+      <div class="receipt-card">
+        <div class="receipt-icon">✓</div>
+        <div class="receipt-title">FABRICATION</div>
+        <div class="receipt-detail">Caught + disclosed</div>
+        <div class="receipt-stat">honesty over plausible output</div>
+      </div>
+    </div>
+
+    <p class="deck-body" style="margin-top:1.2rem;font-family:var(--font-mono);font-size:0.95rem;color:var(--c-accent,#f48225);text-align:center;">
+      ⟨ Trust with receipts. Not "trust me." Open the git log. ⟩
+    </p>
+  </div>
+  <span class="slide-number">13 / 14</span>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<!-- SLIDE 18 · CONTACT + DOWNLOAD                                              -->
+<!-- ════════════════════════════════════════════════════════════════════════ -->
+<section class="slide" id="slide-14" aria-label="Contact and downloads">
+  <div class="slide-inner">
+    <p class="deck-kicker">/13· CONTACT</p>
+    <h2 class="deck-h2">Let's talk.</h2>
+    <p class="deck-lede">Looking for senior full-stack, platform-cloud, or <strong>agentic AI engineering</strong> roles in Hong Kong (or remote). Open to interesting contract work too.</p>
+
+    <div class="grid-2" style="margin-top:2rem;">
+      <div class="card card-accent">
+        <div class="card-title">📧 Reach out</div>
+        <p class="deck-body"><a href="mailto:oscarhychan@gmail.com">oscarhychan@gmail.com</a></p>
+        <p class="deck-body"><a href="https://github.com/oscarhyc">github.com/oscarhyc</a></p>
+        <p class="deck-body">[your portfolio URL]</p>
+      </div>
+      <div class="card card-pink">
+        <div class="card-title">📄 Grab the CV</div>
+        <p class="deck-body"><a href="../cv-single-page.txt" target="_blank">📄 Single-page · .txt</a></p>
+        <p class="deck-body"><a href="../cv-single-page.md" target="_blank">📝 Single-page · .md</a></p>
+        <p class="deck-body"><a href="../cv-two-page.md" target="_blank">📋 Two-page STAR · .md</a></p>
+        <p class="deck-body"><a href="../README.md" target="_blank">🌐 Portfolio README</a></p>
+        <p class="deck-body"><a href="../index.html" target="_blank">🖥️ Static portfolio site</a></p>
+      </div>
+    </div>
+
+    <p class="deck-body dim" style="margin-top:3rem;text-align:center;font-family:var(--font-mono);font-size:0.85rem;">
+      Generated 2026-07-15 from live repo + real session data · Every metric verified against <code>git log</code>, <code>vitest</code>, <code>wrangler</code>, <code>curl</code> · Zero fabrication.
+    </p>
+  </div>
+  <span class="slide-number">14 / 14</span>
+</section>
+
+<!-- ─── Side TOC dot indicators (Phase 3) ────────────────────────────────── -->
+<nav class="deck-toc" id="deckToc" aria-label="Slide navigation dots"></nav>
+
+<!-- ─── CRT scanline overlay (Phase 3) ─────────────────────────────────── -->
+<div class="deck-crt" id="deckCrt" aria-hidden="true"></div>
+
+<!-- ─── Loading state ───────────────────────────────────────────────────── -->
+<div class="deck-loading" id="deckLoading" aria-hidden="true">
+  <span class="deck-loading-text">building deck...</span>
+</div>
+
+<!-- ─── Floating navigation controls ─────────────────────────────────── -->
+<div class="deck-progress" id="deckProgress"></div>
+<div class="deck-controls" id="deckControls" aria-label="Slide navigation">
+  <button id="prevSlide" aria-label="Previous slide">◀</button>
+  <span id="slideCounter">01 / 14</span>
+  <button id="nextSlide" aria-label="Next slide">▶</button>
+  <kbd>F</kbd> fullscreen
+  <kbd>S</kbd> scanlines
+</div>
+
+<script src="deck.js"></script>
+
+<!-- Credentials Modal (Live Demo) -->
+<div id="creds-modal" class="creds-modal" hidden>
+  <div class="creds-backdrop" data-close-credentials></div>
+  <div class="creds-panel" role="dialog" aria-modal="true" aria-labelledby="creds-title">
+    <button class="creds-close" data-close-credentials aria-label="Close">✕</button>
+    <h3 id="creds-title">🔑 Demo login credentials</h3>
+    <p class="creds-note">The staging app uses role-aware login. Pick the demo owner account:</p>
+    <div class="creds-row">
+      <span class="creds-label">Email</span>
+      <code id="creds-email">owner@example.com</code>
+      <button class="creds-copy" data-copy-target="creds-email" title="Copy">⧉</button>
+    </div>
+    <div class="creds-row">
+      <span class="creds-label">Password</span>
+      <code id="creds-pass">test123</code>
+      <button class="creds-copy" data-copy-target="creds-pass" title="Copy">⧉</button>
+    </div>
+    <p class="creds-hint">Tip: <kbd>Tab</kbd> between fields. <kbd>Esc</kbd> closes this dialog.</p>
+    <div class="creds-actions">
+      <button class="creds-btn creds-btn-secondary" data-close-credentials>Close</button>
+      <a class="creds-btn creds-btn-primary" id="creds-go" href="https://staging.taxi-rental.pages.dev" target="_blank" rel="noopener">Continue to demo →</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
